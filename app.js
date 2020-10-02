@@ -149,32 +149,3 @@ const getKey = (obj, val) => {
     }
     return translated;
 }
-
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-
-const audioCtx = new AudioContext();
-
-var oscillator = audioCtx.createOscillator();
-
-oscillator.type = 'square';
-oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hertz
-oscillator.connect(audioCtx.destination);
-const playCode = (string) => {
-    text = string.innerText;
-    console.log(typeof text);
-    text.split("").forEach(letter => {
-        if (letter === "_"){
-            oscillator.start();
-            setTimeout(() => oscillator.stop(), 500)
-        }
-        if (letter === ".") {
-            oscillator.start();
-            setTimeout(() => oscillator.stop(), 200)
-        }
-        if (letter = " "){
-            setTimeout(() => console.log("hello"), 500)
-        }
-    })
-}
-
-document.querySelector(".play-code").addEventListener("click", playCode(document.querySelector("p")));

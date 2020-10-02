@@ -1,7 +1,5 @@
 "use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 var alphabet = {
   A: "._",
   B: "_...",
@@ -171,39 +169,3 @@ var getKey = function getKey(obj, val) {
 
   return translated;
 };
-
-var AudioContext = window.AudioContext || window.webkitAudioContext;
-var audioCtx = new AudioContext();
-var oscillator = audioCtx.createOscillator();
-oscillator.type = 'square';
-oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hertz
-
-oscillator.connect(audioCtx.destination);
-
-var playCode = function playCode(string) {
-  text = string.innerText;
-  console.log(typeof text === "undefined" ? "undefined" : _typeof(text));
-  text.split("").forEach(function (letter) {
-    if (letter === "_") {
-      oscillator.start();
-      setTimeout(function () {
-        return oscillator.stop();
-      }, 500);
-    }
-
-    if (letter === ".") {
-      oscillator.start();
-      setTimeout(function () {
-        return oscillator.stop();
-      }, 200);
-    }
-
-    if (letter = " ") {
-      setTimeout(function () {
-        return console.log("hello");
-      }, 500);
-    }
-  });
-};
-
-document.querySelector(".play-code").addEventListener("click", playCode(document.querySelector("p")));
